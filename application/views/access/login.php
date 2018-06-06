@@ -1,4 +1,4 @@
-<form method="POST" action="<?= base_url()?>access/admin_login">
+<form method="POST" action="<?= base_url()?>access/login">
 	<div class='loginBox '>
 		<div class="login-heading">
 			<p>Login</p>

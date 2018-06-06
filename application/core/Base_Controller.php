@@ -10,6 +10,8 @@ class Base_Controller extends CI_Controller
         $this->load->model("Admin_model");
         $this->load->model("User_model");
         $this->load->model("Client_model");
+
+        if (!$this->session->has_userdata("login_data") and strtolower($this->uri->segment(1)) != "access") redirect("access/login", "refresh");
     }
 
     function hash($password)

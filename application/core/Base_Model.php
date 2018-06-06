@@ -141,4 +141,18 @@ class Base_Model extends CI_Model
         $this->db->where($this->primary_key, $primary_key);
         $this->db->update($this->table_name, $data);
     }
+
+    function login($username, $password)
+    {
+
+        $this->db->select("*");
+        $this->db->from($this->table_name);
+        $this->db->where("username = ", $username);
+        $this->db->join("role", $this->table_name . ".role_id = role.role_id", "left");
+        $this->db->where("password = SHA2(CONCAT(salt,'" . $password . "'),512)");
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
 }

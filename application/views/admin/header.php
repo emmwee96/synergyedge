@@ -62,8 +62,8 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="#" class="btn">
-                                    <i class="fa fa-sign-out"></i> <span>Sign out</span>
+                                <a href="<?= base_url()?>access/logout" class="btn">
+                                    <i class="fa fa-sign-out"></i> <span>Logout</span>
                                 </a>
                             </li>
                         </ul>
