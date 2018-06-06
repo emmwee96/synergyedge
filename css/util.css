@@ -6,3 +6,13 @@
 	padding-top: 2px;
 	padding-bottom: 2px;
 }
+
+.pre-wrap {
+	white-space: pre-wrap;
+}
+
+.box-limit {
+	max-height : 30vw;
+	overflow: hidden;
+	overflow-y: auto;
+}

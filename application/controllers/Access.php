@@ -34,12 +34,15 @@ class Access extends Base_Controller
             if (!empty($admin)) {
                 $login = $this->Admin_model->login($input["username"], $input["password"]);
                 $login_data = $login[0];
+                $login_id = $login[0]["admin_id"];
             } else if (!empty($user)) {
                 $login = $this->User_model->login($input["username"], $input["password"]);
                 $login_data = $login[0];
+                $login_id = $login[0]["user_id"];
             } else if (!empty($client)) {
                 $login = $this->Client_model->login($input["username"], $input["password"]);
                 $login_data = $login[0];
+                $login_id = $login[0]["client_id"];
             } else {
                 $error = true;
                 $this->page_data["error"] = "invalid username and password";
@@ -53,6 +56,7 @@ class Access extends Base_Controller
 
             if (!$error) {
                 $this->session->set_userdata("login_data", $login_data);
+                $this->session->set_userdata("login_id", $login_id);
 
                 redirect("admin", "refresh");
             }
