@@ -24,23 +24,33 @@
                         <tr>
                             <th>No.</th>
                             <th>Username</th>
+                            <th>Name</th>
                             <th>Role</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td><a href="<?= base_url() ?>admin/detail/">1</a></td>
-                                <td><a href="<?= base_url() ?>admin/detail/">AdminASD</a></td>
-                                <td><a href="<?= base_url() ?>admin/detail/">Admin</a></td>
-                                <td><a href="" class="btn btn-danger">Delete</a></td>
-
-                            </tr>
+                        <?php
+                            $i = 1;
+                            foreach($admin as $row){
+                                ?>
+                                    <tr>
+                                        <td><a href="<?= base_url() ?>admin/detail/<?= $row['admin_id']?>"><?= $i ?></a></td>
+                                        <td><a href="<?= base_url() ?>admin/detail/<?= $row['admin_id']?>"><?= $row['username'] ?></a></td>
+                                        <td><a href="<?= base_url() ?>admin/detail/<?= $row['admin_id']?>"><?= $row['name'] ?></a></td>
+                                        <td><a href="<?= base_url() ?>admin/detail/<?= $row['admin_id']?>"><?= $row['role'] ?></a></td>
+                                        <td><a href="<?= base_url() ?>admin/delete/<?= $row['admin_id']?>" class="btn btn-danger delete-button">Delete</a></td>
+                                    </tr>
+                                <?php
+                                $i++;
+                            }
+                        ?>
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>No.</th>
                             <th>Username</th>
+                            <th>Name</th>
                             <th>Role</th>
                             <th></th>
                         </tr>
@@ -48,6 +58,5 @@
                 </table>
             </div>
         </div>
-
     </div>
 </section>

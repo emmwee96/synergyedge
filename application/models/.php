@@ -1,11 +1,11 @@
 <?php
 
-class User_model extends Base_Model{
+class Admin_model extends CI_Model{
     
     function __construct(){
         parent::__construct();
         
-        $this->table_name = "user";
+        $this->table_name = "admin";
     }
     
     

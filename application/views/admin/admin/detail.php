@@ -1,39 +1,55 @@
 <section class="content-header">
-    <h1>
-        Add admin
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="<?= base_url() ?>Admin/all"><i class="fa fa-users"></i> Admin</a></li>
-        <li><a href="<?= base_url() ?>Admin/add"> Add admin</a></li>
-    </ol>
+	<h1>
+		<?= $admin['username'] ?>
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="<?= base_url() ?>Admin/all">
+				<i class="fa fa-users"></i> Admin</a>
+		</li>
+		<li>
+			<a href="<?= base_url() ?>Admin/detail/<?= $admin['admin_id'] ?>">
+				<?= $admin['username'] ?>
+			</a>
+		</li>
+	</ol>
 </section>
 <br>
 <section class="content">
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Admin</h3>
-            <a href='<?php echo site_url('admin/add'); ?>' class='btn btn-default pull-right'>
-                <i class='fa fa-edit' ></i> Edit</a>
-        </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form role="form">
-            <div class="box-body">
-            <div class="form-group">
-                <label for="adminUsername">Username : AdminASD</label>
-            </div>
-            <div class="form-group">
-                <label for="adminPassword">Password : ***</label>
-            </div>
-            <div class="form-group">
-                <label>Role : Admin</label>
-            </div>
-            </div>
-            <!-- /.box-body -->
-
-            <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
-    </div>
+	<div class="col-md-6 col-xs-12">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">
+					<?= $admin['username'] ?>
+				</h3>
+				<a href="<?php echo site_url('admin/edit') . '/' . $admin['admin_id'] ?>" class='btn btn-default pull-right'>
+					<i class='fa fa-edit'></i> Edit</a>
+			</div>
+			<!-- /.box-header -->
+			<!-- form start -->
+			<div class="box-body">
+				<table class="formTable">
+					<tr>
+						<th>Username</th>
+						<td>:
+							<?= $admin["username"] ?>
+						</td>
+					</tr>
+					<tr>
+						<th>Name</th>
+						<td>:
+							<?= $admin["name"] ?>
+						</td>
+					</tr>
+					<tr>
+						<th>Role</th>
+						<td>:
+							<?= $admin["role"] ?>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- /.box-body -->
+		</div>
+	</div>
 </section>
