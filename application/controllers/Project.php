@@ -12,6 +12,7 @@ class Project extends Base_Controller
         $this->page_data = array();
 
         $this->load->model("Project_model");
+        $this->load->model("Project_event_model");
     }
 
     function index()
@@ -61,6 +62,7 @@ class Project extends Base_Controller
         $this->show_404_if_empty($project);
 
         $this->page_data["project"] = $project[0];
+        $this->page_data["events"] = $this->Project_event_model->get_active_project_events();
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/detail");

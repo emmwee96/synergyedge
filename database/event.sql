@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 06, 2018 at 01:14 PM
+-- Generation Time: Jun 06, 2018 at 04:51 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -71,39 +71,6 @@ INSERT INTO `client` (`client_id`, `username`, `password`, `salt`, `role_id`, `n
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event`
---
-
-CREATE TABLE `event` (
-  `event_id` int(11) NOT NULL,
-  `project_id` int(11) NOT NULL,
-  `name` varchar(256) COLLATE utf8_bin NOT NULL,
-  `address` longtext CHARACTER SET utf8 NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `event_date`
---
-
-CREATE TABLE `event_date` (
-  `event_date_id` int(11) NOT NULL,
-  `event_id` int(11) NOT NULL,
-  `date_from` datetime NOT NULL,
-  `date_to` datetime NOT NULL,
-  `description` longtext CHARACTER SET utf8 NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `module`
 --
 
@@ -137,6 +104,55 @@ CREATE TABLE `notification` (
 CREATE TABLE `project` (
   `project_id` int(11) NOT NULL,
   `name` varchar(256) COLLATE utf8_bin NOT NULL,
+  `description` longtext CHARACTER SET utf8 NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`project_id`, `name`, `description`, `created_by`, `created_date`, `deleted`) VALUES
+(2, 'Project Purity', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et nibh rutrum, facilisis nibh vitae, facilisis felis. In tincidunt eleifend sapien, eu sollicitudin massa mollis in. Praesent commodo lacus eget egestas egestas. Etiam id aliquet lorem. Nulla viverra erat at turpis congue, ac molestie nunc pretium. Etiam a urna odio. Phasellus tincidunt, libero non condimentum ultricies, eros nisi fermentum ipsum, in consectetur eros orci porta magna. Maecenas tristique eu risus a semper. Morbi commodo dictum mollis. Donec egestas et orci a feugiat. Aenean vel erat id mi sollicitudin lobortis id ac neque.\r\n\r\nNullam lobortis diam at erat placerat interdum. Fusce ex magna, suscipit eget tempor venenatis, ultrices nec metus. Proin aliquet fringilla ipsum, quis pulvinar magna fermentum sed. Maecenas ullamcorper lorem id dui accumsan, nec rutrum libero feugiat. Sed vestibulum viverra fermentum. Nullam non pharetra odio, non condimentum dui. Maecenas at rutrum mauris. Proin risus elit, sagittis vitae viverra eu, sodales a nibh. Donec porta, orci nec dapibus sagittis, libero risus tempor ante, non faucibus nisi magna nec enim. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec justo tortor, pharetra et facilisis sed, congue quis enim.\r\n\r\nNunc mauris risus, dignissim a ultricies tempus, fringilla non diam. Integer euismod arcu nunc, eget mattis magna venenatis ac. Curabitur consectetur, urna in auctor fermentum, tortor dolor sodales massa, vitae finibus dolor mi quis nulla. In molestie feugiat iaculis. Integer dolor odio, vehicula eget aliquet eu, tincidunt vel nunc. Phasellus urna enim, iaculis ut urna fermentum, finibus semper tortor. Vestibulum scelerisque nisl in facilisis auctor. Etiam nec urna eu tellus eleifend consectetur nec ac eros. Donec nibh lectus, malesuada sit amet blandit non, aliquet a felis. Pellentesque sed tincidunt ligula. Nunc vitae volutpat neque. Nulla molestie erat tortor, quis interdum lorem vulputate non. Donec aliquet ligula leo, in ultricies ex iaculis sit amet. Quisque sed ligula turpis.\r\n\r\nAliquam commodo, sem vel consectetur congue, neque ipsum consectetur sapien, non suscipit nisl nisi quis nunc. Cras gravida ex vel metus gravida, ac finibus tortor gravida. Aliquam eros elit, luctus eget varius sed, pellentesque aliquam tortor. Pellentesque rutrum lorem lectus. Maecenas efficitur risus non egestas fermentum. Sed leo dui, gravida sit amet sapien sed, scelerisque tempor lorem. Ut sit amet metus non ipsum scelerisque fringilla eget non ipsum. Praesent fermentum sapien convallis urna ultrices pretium. Nulla facilisi.\r\n\r\nPraesent elementum imperdiet sem vel facilisis. In varius ipsum non nisi bibendum pellentesque. Suspendisse tempor semper sollicitudin. Nunc et felis ligula. Etiam fringilla massa et lectus volutpat facilisis. In id ex turpis. Curabitur convallis eros id elit malesuada gravida. Etiam purus est, congue et nunc sed, sagittis ultricies ligula. In elementum, sem sed luctus iaculis, libero libero blandit nunc, et efficitur ante ipsum id enim. Ut vitae neque at leo posuere mattis in eget libero. Nam imperdiet urna feugiat, ultrices lorem eu, volutpat lacus. Suspendisse potenti. Aenean et erat congue, scelerisque sapien vel, fringilla dui. Suspendisse turpis sem, tristique vitae viverra in, iaculis eget enim. Curabitur dapibus non enim a vulputate. Praesent vulputate, sem nec facilisis tincidunt, lorem metus auctor felis, at bibendum tellus lacus quis lacus.', 1, '2018-06-06 13:51:24', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_event`
+--
+
+CREATE TABLE `project_event` (
+  `project_event_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `name` varchar(256) COLLATE utf8_bin NOT NULL,
+  `description` longtext CHARACTER SET utf8 NOT NULL,
+  `address` longtext CHARACTER SET utf8 NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `project_event`
+--
+
+INSERT INTO `project_event` (`project_event_id`, `project_id`, `name`, `description`, `address`, `created_by`, `created_date`, `deleted`) VALUES
+(1, 2, 'Event Purity', 'Nulla ut lacus sed arcu rutrum vestibulum. Nulla ut finibus justo. Nulla varius fermentum ante et elementum. Nullam sit amet dui risus. Fusce vel gravida ante. Nulla nec venenatis erat, quis mollis tellus. Vivamus consectetur purus augue, quis cursus quam interdum ut. Etiam eget nunc ligula. Pellentesque ante elit, lobortis non felis sit amet, pharetra tempus justo. Aenean diam leo, dignissim vel auctor nec, lobortis eu eros. Curabitur placerat metus sapien, in tristique augue molestie nec. Pellentesque porta odio imperdiet dui semper, non porta neque finibus.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor tincidunt volutpat. Mauris lacinia, libero non eleifend gravida, augue tortor posuere erat, ut rutrum ex lorem lobortis ipsum. Duis at fermentum purus. Fusce varius neque non tellus finibus gravida. Duis elementum turpis quis nibh ullamcorper malesuada. Maecenas convallis eros eu mollis ultricies. Phasellus volutpat vel nisi non luctus. Phasellus a vehicula nulla. Nulla tristique lacinia erat at pretium. Suspendisse finibus posuere ligula vel vehicula. Cras sed arcu tincidunt, sollicitudin turpis ut, aliquet dui. Phasellus congue fringilla augue sed dignissim. Quisque a urna dolor. Curabitur vitae purus mi. Etiam imperdiet vel est id ullamcorper. Integer dignissim semper eros, varius tempus velit tempus a.', 1, '2018-06-06 14:33:47', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_event_date`
+--
+
+CREATE TABLE `project_event_date` (
+  `project_event_date_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `date_from` datetime NOT NULL,
+  `date_to` datetime NOT NULL,
+  `description` longtext CHARACTER SET utf8 NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
@@ -267,21 +283,6 @@ ALTER TABLE `client`
   ADD KEY `role_id` (`role_id`);
 
 --
--- Indexes for table `event`
---
-ALTER TABLE `event`
-  ADD PRIMARY KEY (`event_id`),
-  ADD KEY `created_by` (`created_by`),
-  ADD KEY `project_id` (`project_id`);
-
---
--- Indexes for table `event_date`
---
-ALTER TABLE `event_date`
-  ADD PRIMARY KEY (`event_date_id`),
-  ADD KEY `event_id` (`event_id`);
-
---
 -- Indexes for table `module`
 --
 ALTER TABLE `module`
@@ -300,6 +301,21 @@ ALTER TABLE `notification`
 ALTER TABLE `project`
   ADD PRIMARY KEY (`project_id`),
   ADD KEY `created_by` (`created_by`);
+
+--
+-- Indexes for table `project_event`
+--
+ALTER TABLE `project_event`
+  ADD PRIMARY KEY (`project_event_id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `project_id` (`project_id`);
+
+--
+-- Indexes for table `project_event_date`
+--
+ALTER TABLE `project_event_date`
+  ADD PRIMARY KEY (`project_event_date_id`),
+  ADD KEY `event_id` (`event_id`);
 
 --
 -- Indexes for table `project_image`
@@ -358,16 +374,6 @@ ALTER TABLE `admin`
 ALTER TABLE `client`
   MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `event`
---
-ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `event_date`
---
-ALTER TABLE `event_date`
-  MODIFY `event_date_id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
@@ -381,7 +387,17 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `project_event`
+--
+ALTER TABLE `project_event`
+  MODIFY `project_event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `project_event_date`
+--
+ALTER TABLE `project_event_date`
+  MODIFY `project_event_date_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `project_image`
 --
@@ -429,16 +445,16 @@ ALTER TABLE `client`
   ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `event`
+-- Constraints for table `project_event`
 --
-ALTER TABLE `event`
-  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `project_event`
+  ADD CONSTRAINT `project_event_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `event_date`
+-- Constraints for table `project_event_date`
 --
-ALTER TABLE `event_date`
-  ADD CONSTRAINT `event_date_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `project_event_date`
+  ADD CONSTRAINT `project_event_date_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `project_event` (`project_event_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `project_image`
