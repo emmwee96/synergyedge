@@ -46,7 +46,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Date From</th>
+						<th>Date To</th>
 						<td>:
 							<?= date("d-m-Y", strtotime($project_event_date["date_to"])) ?>
 						</td>

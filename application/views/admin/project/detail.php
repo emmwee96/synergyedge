@@ -38,9 +38,7 @@
 				</table>
 				<br/>
 				<label>Description</label>
-				<p class="pre-wrap">
-					<?= $project["description"] ?>
-				</p>
+				<p class="pre-wrap"><?= $project["description"] ?></p>
 			</div>
 			<!-- /.box-body -->
 		</div>
