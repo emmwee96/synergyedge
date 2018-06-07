@@ -54,7 +54,7 @@ class Project extends Base_Controller
     {
 
         $where = array(
-            "project_id" => $project_id
+            "project.project_id" => $project_id
         );
 
         $project = $this->Project_model->get_where($where);
@@ -62,7 +62,7 @@ class Project extends Base_Controller
         $this->show_404_if_empty($project);
 
         $this->page_data["project"] = $project[0];
-        $this->page_data["events"] = $this->Project_event_model->get_active_project_events();
+        $this->page_data["events"] = $this->Project_event_model->get_active_project_events_where($where);
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/detail");

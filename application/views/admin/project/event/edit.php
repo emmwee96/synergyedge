@@ -4,7 +4,7 @@
 	</h1>
 	<ol class="breadcrumb">
 		<li>
-			<a href="<?= base_url() ?>Project/all">
+			<a href="<?= base_url() ?>Project">
 				<i class="fa fa-users"></i> Project event</a>
 		</li>
 		<li>

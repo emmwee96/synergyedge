@@ -12,6 +12,8 @@ class Project_event extends Base_Controller
         $this->page_data = array();
 
         $this->load->model("Project_event_model");
+        $this->load->model("Project_model");
+        $this->load->model("Project_event_date_model");
     }
 
     function add($project_id)
@@ -36,8 +38,14 @@ class Project_event extends Base_Controller
             redirect("project/detail/" . $project_id, "refresh");
 
         }
+        
+        $where = array(
+            "project_id" => $project_id
+        );
 
-        $this->page_data["project_id"] = $project_id;
+        $project= $this->Project_model->get_where($where);
+        
+        $this->page_data["project"] = $project[0];
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/event/add");
@@ -48,7 +56,7 @@ class Project_event extends Base_Controller
     {
 
         $where = array(
-            "project_event_id" => $project_event_id
+            "project_event.project_event_id" => $project_event_id
         );
 
         $project_event = $this->Project_event_model->get_active_project_events_where($where);
@@ -56,6 +64,7 @@ class Project_event extends Base_Controller
         $this->show_404_if_empty($project_event);
 
         $this->page_data["project_event"] = $project_event[0];
+        $this->page_data["dates"] = $this->Project_event_date_model->get_active_project_event_dates_where($where);
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/event/detail");

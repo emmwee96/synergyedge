@@ -3,7 +3,7 @@
         Admins
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?= base_url() ?>admin/all"><i class="fa fa-users"></i> Admin</a></li>
+        <li><a href="<?= base_url() ?>admin"><i class="fa fa-users"></i> Admin</a></li>
     </ol>
 </section>
 <br>

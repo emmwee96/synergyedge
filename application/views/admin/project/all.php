@@ -3,7 +3,7 @@
         Projects
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?= base_url() ?>project/all"><i class="fa fa-users"></i> Project</a></li>
+        <li><a href="<?= base_url() ?>project"><i class="fa fa-users"></i> Project</a></li>
     </ol>
 </section>
 <br>

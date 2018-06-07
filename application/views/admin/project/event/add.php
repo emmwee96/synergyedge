@@ -4,8 +4,11 @@
 	</h1>
 	<ol class="breadcrumb">
 		<li>
-			<a href="<?= base_url() ?>Project/all">
-				<i class="fa fa-users"></i> Projec event</a>
+			<a href="<?= base_url() ?>Project">
+				<i class="fa fa-users"></i> Project event</a>
+		</li>
+		<li>
+			<a href="<?= base_url() ?>Project/detail/<?= $project["project_id"]?>"> <?= $project["name"]?></a>
 		</li>
 		<li>
 			<a href="<?= base_url() ?>Project/add"> Add project event</a>
@@ -20,7 +23,7 @@
 		</div>
 		<!-- /.box-header -->
 		<!-- form start -->
-		<form role="form" method="POST" action="<?= base_url()?>project_event/add/<?= $project_id?>">
+		<form role="form" method="POST" action="<?= base_url()?>project_event/add/<?= $project["project_id"]?>">
 			<div class="box-body">
 				<div class="form-group">
 					<label for="projectName">Name</label>

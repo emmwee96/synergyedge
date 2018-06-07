@@ -49,6 +49,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-7/collection/icon/icon.js"></script>
 
 <script>
+	$(document).ready(function(){
+		$(".datepicker").datepicker({
+			format: 'dd-mm-yyyy'
+		});
+	});
+
 	$(document).on("click", ".delete-button", function (e) {
 		e.preventDefault();
 
@@ -59,7 +65,6 @@
             window.location.replace(path);
 		}
 	});
-
 </script>
 </body>
 

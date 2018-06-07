@@ -4,7 +4,7 @@
 	</h1>
 	<ol class="breadcrumb">
 		<li>
-			<a href="<?= base_url() ?>Admin/all">
+			<a href="<?= base_url() ?>Admin">
 				<i class="fa fa-users"></i> Admin</a>
 		</li>
 		<li>

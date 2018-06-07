@@ -3,7 +3,7 @@
         Users
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?= base_url() ?>user/all"><i class="fa fa-users"></i> User</a></li>
+        <li><a href="<?= base_url() ?>user"><i class="fa fa-users"></i> User</a></li>
     </ol>
 </section>
 <br>

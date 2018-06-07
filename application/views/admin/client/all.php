@@ -3,7 +3,7 @@
         Clients
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?= base_url() ?>client/all"><i class="fa fa-users"></i> Client</a></li>
+        <li><a href="<?= base_url() ?>client"><i class="fa fa-users"></i> Client</a></li>
     </ol>
 </section>
 <br>
