@@ -25,6 +25,7 @@
                             <th>No.</th>
                             <th>Name</th>
                             <th>PIC</th>
+                            <th>Type</th>
                             <th>Created Date</th>
                             <th></th>
                         </tr>
@@ -52,6 +53,7 @@
                             <th>No.</th>
                             <th>Name</th>
                             <th>PIC</th>
+                            <th>Type</th>
                             <th>Created Date</th>
                             <th></th>
                         </tr>
