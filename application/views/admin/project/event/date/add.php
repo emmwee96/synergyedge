@@ -26,6 +26,16 @@
 		</div>
 		<!-- /.box-header -->
 		<!-- form start -->
+		<?php
+			if(!empty($error)){
+				?>
+					<br/>
+					<div class='alert alert-danger alert-dismissable' style="margin-left:10%;margin-right:10%;">
+                        <?= $error; ?>
+                    </div>
+				<?php
+			}
+		?>
 		<form role="form" method="POST" action="<?= base_url() ?>project_event_date/add/<?= $project_event["project_event_id"] ?>">
 			<div class="box-body">
 				<div class="form-group">
