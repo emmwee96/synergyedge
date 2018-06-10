@@ -14,6 +14,7 @@ class Project_event extends Base_Controller
         $this->load->model("Project_event_model");
         $this->load->model("Project_model");
         $this->load->model("Project_event_date_model");
+        $this->load->model("Outlet_model");
     }
 
     function add($project_id)
@@ -27,7 +28,7 @@ class Project_event extends Base_Controller
 
             $data = array(
                 'name' => $input['name'],
-                'address' => $input['address'],
+                'outlet_id' => $input['outlet_id'],
                 'description' => $input['description'],
                 'project_id' => $project_id,
                 "created_by" => $this->session->userdata("login_id")
@@ -38,14 +39,16 @@ class Project_event extends Base_Controller
             redirect("project/detail/" . $project_id, "refresh");
 
         }
-        
+
         $where = array(
             "project_id" => $project_id
         );
 
-        $project= $this->Project_model->get_where($where);
-        
+        $project = $this->Project_model->get_where($where);
+        $this->page_data["outlet"] = $this->Outlet_model->get_all();
+
         $this->page_data["project"] = $project[0];
+
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/event/add");
@@ -94,7 +97,7 @@ class Project_event extends Base_Controller
                 $data = array(
                     'name' => $input['name'],
                     'description' => $input['description'],
-                    'address' => $input['address']
+                    'outlet_id' => $input['outlet_id']
                 );
 
                 $this->Project_event_model->update_where($where, $data);
@@ -104,6 +107,7 @@ class Project_event extends Base_Controller
         }
 
         $this->page_data["project_event"] = $project_event[0];
+        $this->page_data["outlet"] = $this->Outlet_model->get_all();
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/event/edit");

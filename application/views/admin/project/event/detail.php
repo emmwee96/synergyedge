@@ -40,10 +40,13 @@
 							<?= $project_event["name"] ?>
 						</td>
 					</tr>
+					<tr>
+						<th>Outlet</th>
+						<td>:
+							<?= $project_event["outlet"] ?>
+						</td>
+					</tr>
 				</table>
-				<br/>
-				<label>Address</label>
-				<p class="pre-wrap"><?= $project_event["address"] ?></p>
 				<br/>
 				<label>Description</label>
 				<p class="pre-wrap"><?= $project_event["description"] ?></p>

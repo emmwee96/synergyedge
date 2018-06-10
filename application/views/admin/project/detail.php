@@ -101,7 +101,7 @@
 								</td>
 								<td>
 									<a href="<?= base_url() ?>project_event/detail/<?= $row['project_event_id']?>">
-										<?= $row['created_by'] ?>
+										<?= $row['pic'] ?>
 									</a>
 								</td>
 								<td>

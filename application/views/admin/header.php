@@ -96,6 +96,16 @@
                                 <i class="fa fa-calendar-o"></i> <span>Project</span>
                             </a>
                         </li>
+                        <li class=" <?php  if ($this->router->fetch_class() == 'outlet'){ echo 'active' ;} ?> ">
+                            <a href="<?= base_url() ?>outlet">
+                                <i class="fa fa-building"></i> <span>Outlet</span>
+                            </a>
+                        </li>
+                        <li class=" <?php  if ($this->router->fetch_class() == 'item'){ echo 'active' ;} ?> ">
+                            <a href="<?= base_url() ?>item">
+                                <i class="fa fa-shopping-cart"></i> <span>Item</span>
+                            </a>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

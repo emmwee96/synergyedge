@@ -47,8 +47,17 @@
 					<input type="text" class="form-control" id="projectName" placeholder="Name" name="name" required value="<?= $project_event['name'] ?>">
                 </div>
                 <div class="form-group">
-					<label for="eventAddress">Address</label>
-					<textarea class="form-control" id="eventAddress" placeholder="Address" name="address" required rows="3"><?= $project_event['address'] ?></textarea>
+					<label for="projectAddress">Outlet</label>
+					<select class="form-control" name="outlet_id">
+						<?php
+					foreach ($outlet as $row) {
+						?>
+									<option value="<?= $row['outlet_id'] ?>" <?php if ($row['outlet_id'] == $project_event['outlet_id']) echo "selected";?>><?= $row["outlet"] ?></option>
+								<?php
+
+						}
+						?>
+					</select>
 				</div>
 				<div class="form-group">
 					<label for="projectDescription">Description</label>
