@@ -35,6 +35,24 @@
 							<?= $project["name"] ?>
 						</td>
 					</tr>
+					<tr>
+						<th>Project Type</th>
+						<td>:
+							<?= $project["project_type"] ?>
+						</td>
+					</tr>
+					<tr>
+						<th>Year</th>
+						<td>:
+							<?= $project["year"] ?>
+						</td>
+					</tr>
+					<tr>
+						<th>PIC</th>
+						<td>:
+							<?= $project["pic"] ?>
+						</td>
+					</tr>
 				</table>
 				<br/>
 				<label>Description</label>

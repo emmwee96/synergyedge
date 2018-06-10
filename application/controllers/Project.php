@@ -13,6 +13,7 @@ class Project extends Base_Controller
 
         $this->load->model("Project_model");
         $this->load->model("Project_event_model");
+        $this->load->model("Project_type_model");
     }
 
     function index()
@@ -35,6 +36,8 @@ class Project extends Base_Controller
             
                 $data = array(
                     'name' => $input['name'],
+                    'year' => $input['year'],
+                    'project_type_id' => $input['project_type_id'],
                     'description' => $input['description'],
                     "created_by" => $this->session->userdata("login_id")
                 );
@@ -44,6 +47,8 @@ class Project extends Base_Controller
                 redirect("project", "refresh");
             
         }
+
+        $this->page_data["project_type"] = $this->Project_type_model->get_all();
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/add");
@@ -57,7 +62,7 @@ class Project extends Base_Controller
             "project.project_id" => $project_id
         );
 
-        $project = $this->Project_model->get_where($where);
+        $project = $this->Project_model->get_active_project_where($where);
 
         $this->show_404_if_empty($project);
 
@@ -84,6 +89,8 @@ class Project extends Base_Controller
 
                 $data = array(
                     'name' => $input['name'],
+                    'year' => $input['year'],
+                    'project_type_id' => $input['project_type_id'],
                     'description' => $input['description']
                 );
 
@@ -102,6 +109,7 @@ class Project extends Base_Controller
         $this->show_404_if_empty($project);
 
         $this->page_data["project"] = $project[0];
+        $this->page_data["project_type"] = $this->Project_type_model->get_all();
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/edit");

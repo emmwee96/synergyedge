@@ -37,6 +37,23 @@
 					<input type="text" class="form-control" id="projectName" placeholder="Name" name="name" required value="<?= $project['name'] ?>">
 				</div>
 				<div class="form-group">
+					<label for="projectType">Project Type</label>
+					<select class="form-control" name="project_type_id">
+						<?php
+					foreach ($project_type as $row) {
+						?>
+						<option value="<?= $row['project_type_id'] ?>" <?php if ($row['project_type_id'] == $project['project_type_id']) echo "selected" ?>><?= $row['project_type'] ?></option>
+							<?php
+
+					}
+					?>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="projectName">Year</label>
+					<input type="text" class="form-control" id="projectYear" placeholder="Year" name="year" required value="<?= $project['year'] ?>">
+				</div>
+				<div class="form-group">
 					<label for="projectDescription">Description</label>
 					<textarea class="form-control" id="projectDescription" placeholder="Description" name="description" required rows="5"><?= $project['description'] ?></textarea>
 				</div>

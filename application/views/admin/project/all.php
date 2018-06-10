@@ -37,7 +37,8 @@
                                     <tr>
                                         <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $i ?></a></td>
                                         <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['name'] ?></a></td>
-                                        <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['created_by'] ?></a></td>
+                                        <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['pic'] ?></a></td>
+                                        <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['project_type'] ?></a></td>
                                         <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['created_date'] ?></a></td>
                                         <td><a href="<?= base_url() ?>project/delete/<?= $row['project_id']?>" class="btn btn-danger delete-button">Delete</a></td>
                                     </tr>

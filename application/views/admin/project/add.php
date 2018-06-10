@@ -20,11 +20,28 @@
 		</div>
 		<!-- /.box-header -->
 		<!-- form start -->
-		<form role="form" method="POST" action="<?= base_url()?>project/add">
+		<form role="form" method="POST" action="<?= base_url() ?>project/add">
 			<div class="box-body">
 				<div class="form-group">
 					<label for="projectName">Name</label>
 					<input type="text" class="form-control" id="projectName" placeholder="Name" name="name" required>
+				</div>
+				<div class="form-group">
+					<label for="projectType">Type</label>
+					<select class="form-control" name="project_type_id">
+						<?php
+					foreach ($project_type as $row) {
+						?>
+						<option value="<?= $row['project_type_id'] ?>"><?= $row['project_type'] ?></option>
+							<?php
+
+					}
+					?>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="projectYear">Year</label>
+					<input type="text" class="form-control" id="projectYear" placeholder="Year" name="year" required>
 				</div>
 				<div class="form-group">
 					<label for="projectDescription">Description</label>
