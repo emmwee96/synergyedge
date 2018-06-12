@@ -7,18 +7,19 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>js/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="<?= base_url() ?>js/bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-	$.widget.bridge('uibutton', $.ui.button);
 
-</script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>js/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
+<!--========== LOCATION MODAL ============= -->
+<?php include('modals/locationModal.php'); ?>
+<?php include('modals/addProductsModal.php'); ?>
+
+
+
+
+
+
+
+<!-- jQuery 3 -->
+
 <script src="<?= base_url() ?>js/bower_components/raphael/raphael.min.js"></script>
 <script src="<?= base_url() ?>js/bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
@@ -45,8 +46,11 @@
 <script src="<?= base_url() ?>js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url() ?>js/demo.js"></script>
+<script src="<?= base_url() ?>js/functions.js"></script>
 <!-- IonIcon -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-7/collection/icon/icon.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script>
 	$(document).ready(function(){

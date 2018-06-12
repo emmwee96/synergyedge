@@ -27,8 +27,10 @@ class Project extends Base_Controller
 
     function add()
     {
-
+        $checklist = $this->db->get("checklist")->result_array();
+        $outlets = $this->db->get_where("outlet")->result_array();
         if ($_POST) {
+            die(json_encode($_POST));
             $input = $this->input->post();
 
             $error = false;
@@ -39,7 +41,8 @@ class Project extends Base_Controller
                     'year' => $input['year'],
                     'project_type_id' => $input['project_type_id'],
                     'description' => $input['description'],
-                    "created_by" => $this->session->userdata("login_id")
+                    "created_by" => $this->session->userdata("login_id"),
+                    "outlets" => $outlets
                 );
 
                 $this->Project_model->insert($data);
@@ -48,6 +51,8 @@ class Project extends Base_Controller
             
         }
 
+        $this->page_data['outlets'] = $outlets;
+        $this->page_data['checklist'] = $checklist;
         $this->page_data["project_type"] = $this->Project_type_model->get_all();
 
         $this->load->view("admin/header", $this->page_data);
