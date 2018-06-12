@@ -41,11 +41,11 @@
                     
                     <div class="form-group">
                         <label for="projectYear">Project start date</label>
-                        <input type="date" class="form-control" id="date" placeholder="Date" name="startDate" required>
+                        <input type="text" class="form-control datepicker" id="date" placeholder="Date" name="startDate" required>
                     </div>
                     <div class="form-group">
                         <label for="projectYear">Project end date</label>
-                        <input type="date" class="form-control" id="date" placeholder="Date" name="endDate" required>
+                        <input type="text" class="form-control datepicker" id="date" placeholder="Date" name="endDate" required>
                     </div>
            
 			    </div>

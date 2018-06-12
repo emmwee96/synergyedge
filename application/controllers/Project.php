@@ -14,6 +14,11 @@ class Project extends Base_Controller
         $this->load->model("Project_model");
         $this->load->model("Project_event_model");
         $this->load->model("Project_type_model");
+        $this->load->model("Project_item_model");
+        $this->load->model("Project_outlet_model");
+        $this->load->model("Project_outlet_checklist_model");
+        $this->load->model("Project_outlet_item_model");
+        $this->load->model("Checklist_model");
     }
 
     function index()
@@ -30,25 +35,64 @@ class Project extends Base_Controller
         $checklist = $this->db->get("checklist")->result_array();
         $outlets = $this->db->get_where("outlet")->result_array();
         if ($_POST) {
-            die(json_encode($_POST));
             $input = $this->input->post();
 
             $error = false;
 
-            
+            $data = array(
+                'name' => $input['name'],
+                'start_date' => date("Y-m-d", strtotime($input['startDate'])),
+                'end_date' => date("Y-m-d", strtotime($input['endDate'])),
+                "created_by" => $this->session->userdata("login_id")
+            );
+
+            $project_id = $this->Project_model->insert($data);
+
+            foreach ($input["items"] as $row) {
                 $data = array(
-                    'name' => $input['name'],
-                    'year' => $input['year'],
-                    'project_type_id' => $input['project_type_id'],
-                    'description' => $input['description'],
-                    "created_by" => $this->session->userdata("login_id"),
-                    "outlets" => $outlets
+                    "project_id" => $project_id,
+                    "item_id" => $row
                 );
 
-                $this->Project_model->insert($data);
+                $this->Project_item_model->insert($data);
 
-                redirect("project", "refresh");
-            
+            }
+
+
+            $checklist = $this->Checklist_model->get_all();
+
+            foreach ($input["outlets"] as $row) {
+                $data = array(
+                    "project_id" => $project_id,
+                    "outlet_id" => $row
+                );
+
+                $project_outlet_id = $this->Project_outlet_model->insert($data);
+
+                foreach ($input["items"] as $row) {
+                    $data = array(
+                        "project_outlet_id" => $project_outlet_id,
+                        "item_id" => $row
+                    );
+    
+                    $this->Project_outlet_item_model->insert($data);
+    
+                }
+    
+                foreach ($checklist as $checklist_row) {
+                    if (!empty($input["checklist_" . $checklist_row["checklist_id"] . "_" . $row])) {
+                        $data = array(
+                            "project_outlet_id" => $project_outlet_id,
+                            "checklist_id" => $checklist_row["checklist_id"]
+                        );
+
+                        $this->Project_outlet_checklist_model->insert($data);
+                    }
+                }
+            }
+
+            redirect("project", "refresh");
+
         }
 
         $this->page_data['outlets'] = $outlets;

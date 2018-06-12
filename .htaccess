@@ -1,4 +1,4 @@
 RewriteEngine on
-RewriteBase    /event/
+RewriteBase    /synergyedge/
 RewriteCond $1 !^(index\.php|images|files|css|js|fonts|robots\.txt)
-RewriteRule ^(.*)$ /event/index.php/$1 [L]
+RewriteRule ^(.*)$ /synergyedge/index.php/$1 [L]

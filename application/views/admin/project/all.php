@@ -25,7 +25,8 @@
                             <th>No.</th>
                             <th>Name</th>
                             <th>PIC</th>
-                            <th>Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th>Created Date</th>
                             <th></th>
                         </tr>
@@ -39,7 +40,8 @@
                                         <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $i ?></a></td>
                                         <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['name'] ?></a></td>
                                         <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['pic'] ?></a></td>
-                                        <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['project_type'] ?></a></td>
+                                        <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['start_date'] ?></a></td>
+                                        <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['end_date'] ?></a></td>
                                         <td><a href="<?= base_url() ?>project/detail/<?= $row['project_id']?>"><?= $row['created_date'] ?></a></td>
                                         <td><a href="<?= base_url() ?>project/delete/<?= $row['project_id']?>" class="btn btn-danger delete-button">Delete</a></td>
                                     </tr>
@@ -53,7 +55,8 @@
                             <th>No.</th>
                             <th>Name</th>
                             <th>PIC</th>
-                            <th>Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th>Created Date</th>
                             <th></th>
                         </tr>

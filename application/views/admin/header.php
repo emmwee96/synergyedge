@@ -26,6 +26,8 @@
         <link rel="stylesheet" href="<?= base_url() ?>css/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="<?= base_url() ?>js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 
         <!-- Custom Admin CSS -->
         <link rel="stylesheet" href="<?= base_url() ?>css/admin/admin.css">
