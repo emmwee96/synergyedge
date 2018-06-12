@@ -181,7 +181,9 @@
         addedOutletRows.push(outlet);
         
         var row = "<tr id='outlet_row_"+ outlet.outlet_id + "'>";
-        row += "<td>[" + outlet.customer_code + "] " + outlet.customer_name + " ( "+ outlet.outlet +" )</td>";
+        row += "<td>[" + outlet.customer_code + "] " + outlet.customer_name + " ( "+ outlet.outlet +" )";
+        row += "<input type='hidden' name='outlets[]' value='" + outlet.outlet_id + "'>";
+        row += "</td>";
         <?php foreach($checklist as $check){ ?>
         row += "<td class='text-align:center'><input type='checkbox' name='checklist_<?= $check['checklist_id']; ?>_"+ outlet.outlet_id+"'></td>";
         <?php } ?>
