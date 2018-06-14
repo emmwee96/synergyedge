@@ -36,15 +36,15 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Project Type</th>
+						<th>Start Date</th>
 						<td>:
-							<?= $project["project_type"] ?>
+							<?= $project["start_date"] ?>
 						</td>
 					</tr>
 					<tr>
-						<th>Year</th>
+						<th>End Date</th>
 						<td>:
-							<?= $project["year"] ?>
+							<?= $project["end_date"] ?>
 						</td>
 					</tr>
 					<tr>
@@ -53,10 +53,13 @@
 							<?= $project["pic"] ?>
 						</td>
 					</tr>
+					<tr>
+						<th>Supervisor</th>
+						<td>:
+							<?= $project["supervisor"] ?>
+						</td>
+					</tr>
 				</table>
-				<br/>
-				<label>Description</label>
-				<p class="pre-wrap"><?= $project["description"] ?></p>
 			</div>
 			<!-- /.box-body -->
 		</div>
@@ -127,6 +130,80 @@
 							<th></th>
 						</tr>
 					</tfoot>
+				</table>
+			</div>
+			<!-- /.box-body -->
+		</div>
+	</div>
+	<div class="col-md-12 col-xs-12">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">
+					<?= $project['name'] ?>'s Locations
+				</h3>
+			</div>
+			<!-- /.box-header -->
+			<!-- form start -->
+			<div class="box-body box-limit">
+				<table class="table table-bordered">
+					<tr>
+						<th>Location</th>
+						<?php
+							foreach($checklist as $checklist_row){
+								?>
+									<th><?= $checklist_row['checklist'] ?></th>
+								<?php
+							}
+						?>
+					</tr>
+					<?php
+						foreach($project_outlet as $row){
+							?>
+								<tr>
+									<td><?= $row['outlet'] ?></td>
+									<?php
+										foreach($checklist as $checklist_row){
+											?>
+												<td><?= $row[$checklist_row['checklist']] ?></td>
+											<?php
+										}
+									?>
+								</tr>
+							<?php
+						}
+					?>
+				</table>
+			</div>
+			<!-- /.box-body -->
+		</div>
+	</div>
+	<div class="col-md-12 col-xs-12">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">
+					<?= $project['name'] ?>'s Location Items
+				</h3>
+			</div>
+			<!-- /.box-header -->
+			<!-- form start -->
+			<div class="box-body box-limit">
+				<table class="table table-bordered">
+					<tr>
+						<th>Location</th>
+						<th>Item</th>
+						<th>Stock</th>
+					</tr>
+					<?php
+						foreach($project_outlet_item as $row){
+							?>
+								<tr>
+									<td><?= $row['outlet'] ?></td>
+									<td><?= $row['item'] ?></td>
+									<td><?= $row['amount'] ?></td>
+								</tr>
+							<?php
+						}
+					?>
 				</table>
 			</div>
 			<!-- /.box-body -->
