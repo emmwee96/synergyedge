@@ -40,6 +40,12 @@
                                 <input style="width:30%" type="date" class="form-control" name="date">
 							</td>
 						</tr>
+                        <tr>
+							<th>Report Title</th>
+							<td>
+                                <input  placeholder="Give this report a title" type="text" class="form-control" name="date">
+							</td>
+						</tr>
 						<tr>
                         <th>Report</th>
 							<td>
