@@ -100,6 +100,24 @@
                         </tr>
                         <?php } ?>
 					</table>
+            
+				</div>
+				<!-- /.box-body -->
+			</div>
+		</div>	
+
+    <div class="col-md-12 col-xs-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">
+                            Images
+					</h3>
+                    <p>Add images to support your report!</p>
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<div class="box-body box-limit">
+					<input type='file' class="form-control" id="images">
                     <hr>
                     <button type="submit" name="status" value="publish" class="btn btn-info pull-right" style="margin-left:10px;">
                             Publish Report
@@ -114,6 +132,7 @@
 			</div>
 		</div>	
 	</div>
+    </div>
 </section>
 </form>
 <script>
@@ -127,5 +146,6 @@
 
             $(".item_" + itemId + "_total").val(total);
         });
+
     });
 </script>
