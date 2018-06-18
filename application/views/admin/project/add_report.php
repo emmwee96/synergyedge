@@ -37,19 +37,19 @@
 						<tr>
 							<th>Report Date</th>
 							<td>
-                                <input style="width:30%" type="date" class="form-control" name="date">
+                                <input type="text" placeholder="Give enter a date for this report" class="datepicker form-control" style="width:30%"  name="date" required autocomplete="off">
 							</td>
 						</tr>
                         <tr>
 							<th>Report Title</th>
 							<td>
-                                <input  placeholder="Give this report a title" type="text" class="form-control" name="date">
+                                <input type="text" placeholder="Give this report a title" class="form-control" name="title" required>
 							</td>
 						</tr>
 						<tr>
                         <th>Report</th>
 							<td>
-                            <textarea style="height:200px" class="form-control"></textarea>
+                            <textarea rows="10" class="form-control" required></textarea>
 							</td>
 						</tr>
 						

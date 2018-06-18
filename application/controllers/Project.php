@@ -125,20 +125,20 @@ class Project extends Base_Controller
         $this->page_data["project"] = $project[0];
         $this->page_data["events"] = $this->Project_event_model->get_active_project_events_where($where);
         $checklist = $this->Checklist_model->get_all();
-        
+
         $project_outlet = $this->Project_outlet_model->get_project_outlets($project_id);
 
         $i = 0;
-        foreach($project_outlet as $row){
+        foreach ($project_outlet as $row) {
             $project_outlet_checklist = $this->Project_outlet_checklist_model->get_where(array(
                 "project_outlet_id" => $row["project_outlet_id"]
             ));
-            foreach($project_outlet_checklist as $project_outlet_checklist_row){
-                foreach($checklist as $checklist_row){
+            foreach ($project_outlet_checklist as $project_outlet_checklist_row) {
+                foreach ($checklist as $checklist_row) {
                     if ($project_outlet_checklist_row["checklist_id"] == $checklist_row["checklist_id"]) $project_outlet[$i][$checklist_row["checklist"]] = "YES";
                 }
             }
-            foreach($checklist as $checklist_row){
+            foreach ($checklist as $checklist_row) {
                 if (empty($project_outlet[$i][$checklist_row["checklist"]])) $project_outlet[$i][$checklist_row["checklist"]] = "NO";
             }
             $i++;
@@ -186,7 +186,7 @@ class Project extends Base_Controller
                 $project_outlet_checklists = $this->Project_outlet_checklist_model->get_project_outlet_checklists($project_id);
                 $project_outlet_items = $this->Project_outlet_item_model->get_project_outlet_items($project_id);
 
-                foreach($project_outlet_checklists as $row){
+                foreach ($project_outlet_checklists as $row) {
                     $where = array(
                         "project_outlet_checklist_id" => $row["project_outlet_checklist_id"]
                     );
@@ -194,7 +194,7 @@ class Project extends Base_Controller
                     $this->Project_outlet_checklist_model->hard_delete_where($where);
                 }
 
-                foreach($project_outlet_items as $row){
+                foreach ($project_outlet_items as $row) {
                     $where = array(
                         "project_outlet_item_id" => $row["project_outlet_item_id"]
                     );
@@ -282,7 +282,8 @@ class Project extends Base_Controller
         redirect("project", "refresh");
     }
 
-    function project_outlet($project_id,$project_outlet_id){
+    function project_outlet($project_id, $project_outlet_id)
+    {
         $where = array(
             "project.project_id" => $project_id
         );
@@ -304,7 +305,9 @@ class Project extends Base_Controller
         $this->load->view("admin/footer");
     }
 
-    function add_report($project_id,$project_outlet_id){
+    function add_report($project_id, $project_outlet_id)
+    {
+
         $where = array(
             "project.project_id" => $project_id
         );
@@ -312,6 +315,7 @@ class Project extends Base_Controller
         $project = $this->Project_model->get_active_project_where($where);
 
         $this->show_404_if_empty($project);
+
         $this->page_data["project"] = $project[0];
         $this->page_data['project_outlet'] = $this->Project_outlet_model->get_where(array(
             "project_outlet_id" => $project_outlet_id
@@ -320,7 +324,7 @@ class Project extends Base_Controller
             'project_outlet_id' => $project_outlet_id
         ));
 
-        $this->load->view("admin/header",$this->page_data);
+        $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/add_report");
         $this->load->view("admin/footer");
     }
