@@ -18,6 +18,9 @@ class Project extends Base_Controller
         $this->load->model("Project_outlet_model");
         $this->load->model("Project_outlet_checklist_model");
         $this->load->model("Project_outlet_item_model");
+        $this->load->model("Project_report_model");
+        $this->load->model("Project_report_item_model");
+        $this->load->model("Project_report_image_model");
         $this->load->model("Checklist_model");
         $this->load->model("User_model");
     }
@@ -300,6 +303,45 @@ class Project extends Base_Controller
             'project_outlet_id' => $project_outlet_id
         ));
 
+        $where = array(
+            "project_outlet_id" => $project_outlet_id
+        );
+
+        $project_report = $this->Project_report_model->get_where($where);
+
+        $i = 0;
+        if (!empty($project_report)) {
+            foreach ($project_report as $row) {
+                $where = array(
+                    "project_report_id" => $project_report[0]["project_report_id"]
+                );
+
+                $project_report_item = $this->Project_report_item_model->get_where_with_item($where);
+
+                $time_12_3 = 0;
+                $time_3_5 = 0;
+                $time_6_9 = 0;
+                $total = 0;
+
+                foreach ($project_report_item as $item_row) {
+                    $time_12_3 += $item_row["time_12_3"];
+                    $time_3_5 += $item_row["time_3_5"];
+                    $time_6_9 += $item_row["time_6_9"];
+                    $total += $item_row["total"];
+                }
+
+                $project_report[$i]["items"] = $project_report_item;
+                $project_report[$i]["time_12_3"] = $time_12_3;
+                $project_report[$i]["time_3_5"] = $time_3_5;
+                $project_report[$i]["time_6_9"] = $time_6_9;
+                $project_report[$i]["total"] = $total;
+
+                $i++;
+            }
+        }
+
+        $this->page_data["project_report"] = $project_report;
+
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/project_outlet");
         $this->load->view("admin/footer");
@@ -316,13 +358,64 @@ class Project extends Base_Controller
 
         $this->show_404_if_empty($project);
 
-        $this->page_data["project"] = $project[0];
-        $this->page_data['project_outlet'] = $this->Project_outlet_model->get_where(array(
+        $project_outlet = $this->Project_outlet_model->get_where(array(
             "project_outlet_id" => $project_outlet_id
         ))[0];
-        $this->page_data["project_outlet_item"] = $this->Project_outlet_item_model->get_where(array(
+
+        $project_outlet_item = $this->Project_outlet_item_model->get_where(array(
             'project_outlet_id' => $project_outlet_id
         ));
+
+        if ($_POST) {
+            $input = $this->input->post();
+
+            $data = array(
+                "title" => $input["title"],
+                "date" => date("Y-m-d", strtotime($input["date"])),
+                "report" => $input["report"],
+                "status" => $input["status"],
+                "project_id" => $project_id,
+                "project_outlet_id" => $project_outlet_id,
+                "created_by" => $this->session->userdata("login_id")
+            );
+
+            $project_report_id = $this->Project_report_model->insert($data);
+
+            foreach ($project_outlet_item as $row) {
+                $data = array(
+                    "project_report_id" => $project_report_id,
+                    "item_id" => $row["item_id"],
+                    "feedback" => $input["item_" . $row["item_id"] . "_feedback"],
+                    "time_12_3" => $input["item_" . $row["item_id"] . "_12_3"],
+                    "time_3_5" => $input["item_" . $row["item_id"] . "_3_5"],
+                    "time_6_9" => $input["item_" . $row["item_id"] . "_6_9"],
+                    "total" => ($input["item_" . $row["item_id"] . "_12_3"] + $input["item_" . $row["item_id"] . "_3_5"] + $input["item_" . $row["item_id"] . "_6_9"])
+                );
+
+                $this->Project_report_item_model->insert($data);
+            }
+
+            if ($_FILES) {
+                if (!empty($_FILES['report_images']['name'])) {
+                    $urls = $this->multi_image_upload($_FILES, "report_images", "Report");
+
+                    foreach ($urls as $url) {
+                        $data = array(
+                            "project_report_id" => $project_report_id,
+                            "image" => $url
+                        );
+
+                        $this->Project_report_image_model->insert($data);
+                    }
+                }
+            }
+
+            redirect("project/project_outlet/" . $project_id . "/" . $project_outlet_id, "refresh");
+        }
+
+        $this->page_data["project"] = $project[0];
+        $this->page_data['project_outlet'] = $project_outlet;
+        $this->page_data["project_outlet_item"] = $project_outlet_item;
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/add_report");
