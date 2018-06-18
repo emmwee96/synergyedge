@@ -20,5 +20,16 @@ class project_outlet_item_model extends Base_model{
 
         return $query->result_array();
     }
+
+    function get_where($cond){
+        $this->db->select("*");
+        $this->db->from("project_outlet_item");
+        $this->db->join("item", "project_outlet_item.item_id = item.item_id","left");
+        $this->db->where($cond);
+        $items= $this->db->get()->result_array();
+
+        return $items;
+        
+    }
     
 }

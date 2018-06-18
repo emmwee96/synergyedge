@@ -282,4 +282,47 @@ class Project extends Base_Controller
         redirect("project", "refresh");
     }
 
+    function project_outlet($project_id,$project_outlet_id){
+        $where = array(
+            "project.project_id" => $project_id
+        );
+
+        $project = $this->Project_model->get_active_project_where($where);
+
+        $this->show_404_if_empty($project);
+
+        $this->page_data["project"] = $project[0];
+        $this->page_data['project_outlet'] = $this->Project_outlet_model->get_where(array(
+            "project_outlet_id" => $project_outlet_id
+        ))[0];
+        $this->page_data["project_outlet_item"] = $this->Project_outlet_item_model->get_where(array(
+            'project_outlet_id' => $project_outlet_id
+        ));
+
+        $this->load->view("admin/header", $this->page_data);
+        $this->load->view("admin/project/project_outlet");
+        $this->load->view("admin/footer");
+    }
+
+    function add_report($project_id,$project_outlet_id){
+        $where = array(
+            "project.project_id" => $project_id
+        );
+
+        $project = $this->Project_model->get_active_project_where($where);
+
+        $this->show_404_if_empty($project);
+        $this->page_data["project"] = $project[0];
+        $this->page_data['project_outlet'] = $this->Project_outlet_model->get_where(array(
+            "project_outlet_id" => $project_outlet_id
+        ))[0];
+        $this->page_data["project_outlet_item"] = $this->Project_outlet_item_model->get_where(array(
+            'project_outlet_id' => $project_outlet_id
+        ));
+
+        $this->load->view("admin/header",$this->page_data);
+        $this->load->view("admin/project/add_report");
+        $this->load->view("admin/footer");
+    }
+
 }

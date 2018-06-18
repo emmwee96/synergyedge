@@ -17,7 +17,7 @@
 <br>
 <section class="content">
 	<div class="row">
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-4 col-xs-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">
@@ -65,78 +65,8 @@
 				<!-- /.box-body -->
 			</div>
 		</div>
-		<div class="col-md-6 col-xs-12">
-			<div class="box box-info">
-				<div class="box-header with-border">
-					<h3 class="box-title">
-						Events
-					</h3>
-					<a href="<?php echo site_url('project_event/add') . '/' . $project['project_id'] ?>" class='btn btn-default pull-right'>
-						<i class='fa fa-plus'></i> add</a>
-				</div>
-				<!-- /.box-header -->
-				<!-- form start -->
-				<div class="box-body box-limit">
-					<table id="data-table" class="table table-bordered table-hover data-table">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>Name</th>
-								<th>PIC</th>
-								<th>Created Date</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-								$i = 1;
-								foreach($events as $row){
-									?>
-								<tr>
-									<td>
-										<a href="<?= base_url() ?>project_event/detail/<?= $row['project_event_id']?>">
-											<?= $i ?>
-										</a>
-									</td>
-									<td>
-										<a href="<?= base_url() ?>project_event/detail/<?= $row['project_event_id']?>">
-											<?= $row['name'] ?>
-										</a>
-									</td>
-									<td>
-										<a href="<?= base_url() ?>project_event/detail/<?= $row['project_event_id']?>">
-											<?= $row['pic'] ?>
-										</a>
-									</td>
-									<td>
-										<a href="<?= base_url() ?>project_event/detail/<?= $row['project_event_id']?>">
-											<?= $row['created_date'] ?>
-										</a>
-									</td>
-									<td>
-										<a href="<?= base_url() ?>project_event/delete/<?= $row['project_event_id']?>" class="btn btn-danger delete-button">Delete</a>
-									</td>
-								</tr>
-								<?php
-									$i++;
-								}
-							?>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>No.</th>
-								<th>Name</th>
-								<th>PIC</th>
-								<th>Created Date</th>
-								<th></th>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-				<!-- /.box-body -->
-			</div>
-		</div>
-		<div class="col-md-12 col-xs-12">
+
+		<div class="col-md-8 col-xs-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">
@@ -192,17 +122,40 @@
 						<tr>
 							<th>Location</th>
 							<th>Item</th>
-							<th>Stock</th>
+							<th>Target</th>
 						</tr>
 						<?php
+                        if(count($project_outlet_item)){
+                            $tempCustName = $project_outlet_item[0]['customer_name'] . '  '. $project_outlet_item[0]['outlet'];
+                        }else{
+                            $tempCustName = '';
+                        }
+                        $i = 0;
 							foreach($project_outlet_item as $row){
+                                
 								?>
-									<tr>
-										<td><?= $row['outlet'] ?></td>
-										<td><?= $row['item'] ?></td>
-										<td><?= $row['amount'] ?></td>
+									<tr class="<?= $tempCustName == $row['customer_name'] . '  ' .$row['outlet']&& $i != 0 ? '':'row_highlight';?>">
+
+										<td>
+                                            <a href="<?= site_url('project/project_outlet/'.$row['project_id'].'/'.$row['project_outlet_id']); ?>">
+                                            <?= $tempCustName == $row['customer_name'] . '  ' .$row['outlet'] && $i != 0 ? '' : $row['customer_name'] . '  ' .$row['outlet']; ?>
+                                            </a>
+                                        </td>
+										<td>    
+                                        <a href="<?= site_url('project/project_outlet/'.$row['project_id'].'/'.$row['project_outlet_id']); ?>">
+                                        <?= $row['item'] ?>
+                                        </a>
+                                        </td>
+										<td>
+                                        <a href="<?= site_url('project/project_outlet/'.$row['project_id'].'/'.$row['project_outlet_id']); ?>">
+                                        <?= $row['target'] ?>
+                                        </a>
+                                        </td>
 									</tr>
+
 								<?php
+                                $i++;
+                                $tempCustName = $row['customer_name'] . '  ' .$row['outlet'];
 							}
 						?>
 					</table>

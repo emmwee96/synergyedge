@@ -20,4 +20,13 @@ class Project_outlet_model extends Base_model{
         return $query->result_array();
     }
 
+    function get_where($cond){
+        $this->db->select("*");
+        $this->db->from("project_outlet");
+        $this->db->where($cond);
+        $this->db->join("outlet",'project_outlet.outlet_id = outlet.outlet_id','left');
+
+        return $this->db->get()->result_array();
+    }
+
 }
