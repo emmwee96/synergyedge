@@ -1,11 +1,11 @@
 <?php
 
-class Role_access_model extends Base_Model{
+class Module_model extends Base_Model{
     
     function __construct(){
         parent::__construct();
         
-        $this->table_name = "role_access";
+        $this->table_name = "module";
     }
     
 }
