@@ -84,6 +84,8 @@
 								<tr>
 									<th style="width:40%">Item</th>
 									<th style="width:40%">Category</th>
+									<th style="width:10%">Quantity</th>
+									<th style="width:10%">Target</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -242,6 +244,8 @@
 		row += "<td>" + item.item + "<input type='hidden' value='" + item.item_id + "' name='items[]'>";
 		row += "</td>";
 		row += "<td>" + item.name + "</td>";
+		row += "<td>" + "<input type='number' name='quantity[]' required>" + "</td>";
+		row += "<td>" + "<input type='number' name='target[]' required>" + "</td>";
 		row += "<td><button class='btn btn-danger' onclick='removeProductsRow(" + item.item_id + ")'>Remove</button></td>";
 		row += "</tr>";
 
