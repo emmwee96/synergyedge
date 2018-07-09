@@ -48,12 +48,10 @@
 						</tr>
 						<tr>
 							<th>Address</th>
-							<td>:
-								<?= $project_outlet["address_1"] ?>
-							</td>
 						</tr>
 
 					</table>
+					<p class="pre-wrap"><?= $project_outlet['address_1'] ?></p>
 				</div>
 				<!-- /.box-body -->
 			</div>

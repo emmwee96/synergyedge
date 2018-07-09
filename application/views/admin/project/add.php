@@ -39,7 +39,7 @@
 							<input type="text" class="form-control" id="projectName" placeholder="Name" name="name" required>
 						</div>
 						<div class="form-group">
-							<label>Project start date</label>
+							<label>Select Supervisor</label>
 							<select class="form-control" name="user_id">
                                 <?php
                                     foreach($users as $row){

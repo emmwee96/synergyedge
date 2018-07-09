@@ -12,6 +12,8 @@ class Base_Controller extends CI_Controller
         $this->load->model("Client_model");
 
         if (!$this->session->has_userdata("login_data") and strtolower($this->uri->segment(1)) != "access") redirect("access/login", "refresh");
+
+        // $this->generate_modules();
     }
 
     function hash($password)
@@ -109,6 +111,12 @@ class Base_Controller extends CI_Controller
         }
 
         return $urls;
+    }
+
+    function generate_modules(){
+        $tables = $this->db->list_tables();
+
+        $this->debug($tables);
     }
 
 }
