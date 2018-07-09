@@ -17,14 +17,15 @@ html {
 }
 
 .loginBox {
-	height: 55vh;
+	min-height: 55vh;
 	background-color: white;
-	width: 23vw;
-	margin-left: 38.5vw;
-	margin-top: 9%;
-	float: left;
+	width: 400px;
 	box-shadow: 1px 3px 15px 3px #888888;
     position: relative;
+    left:0 ;
+    right: 0;
+    margin-left: auto;
+    margin-right:auto;
 }
 
 .login-heading {
@@ -50,11 +51,16 @@ html {
 	color: rgba(0, 0, 0, 0.5);
 }
 
+.logo_image{
+    width: 50%;
+    margin-left: 25%;
+}
 .contentWrapper {
-	height: 100%;
+    height: 100%;
+    padding-top: 8%;
 	vertical-align: top;
 	display: block;
-	background-image: url("../images/login-bg.jpg");
+	background: linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113));
 	background-size: cover;
 }
 

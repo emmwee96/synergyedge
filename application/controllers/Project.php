@@ -107,7 +107,7 @@ class Project extends Base_Controller
             "role_id" => 3
         );
 
-        $this->page_data["users"] = $this->User_model->get_where($where);
+        $this->page_data["supervisors"] = $this->User_model->get_where($where);
 
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/project/add");

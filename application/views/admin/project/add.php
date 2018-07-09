@@ -38,18 +38,7 @@
 							<label for="projectName">Give a name to this project</label>
 							<input type="text" class="form-control" id="projectName" placeholder="Name" name="name" required>
 						</div>
-						<div class="form-group">
-							<label>Project start date</label>
-							<select class="form-control" name="user_id">
-                                <?php
-                                    foreach($users as $row){
-                                        ?>
-                                            <option value="<?= $row['user_id'] ?>"><?= $row['name'] ?></option>
-                                        <?php
-                                    }
-                                ?>
-                            </select>
-						</div>
+						
 						<div class="form-group">
 							<label for="projectYear">Project start date</label>
 							<input type="text" class="form-control datepicker" id="date" placeholder="Date" name="startDate" required>
@@ -70,7 +59,8 @@
 						<table class="table table-hover table-stripe">
 							<thead>
 								<tr>
-									<th style="width:50%">Outlet</th>
+									<th style="width:35%">Outlet</th>
+                                    <th style="width:15%">Supervisor</th>
 									<?php foreach($checklist as $row){ ?>
 									<th style="text-align:center">
 										<?= $row['checklist']; ?>
@@ -196,7 +186,7 @@
 		$("#location_modal").modal("show");
 	}
 
-	function createLocationRow(outlet) {
+	function createLocationRow(outlet,supervisor) {
 		for (var i = 0; i < addedOutletRows.length; i++) {
 			if (addedOutletRows[i].outlet_id == outlet.outlet_id) {
 				return;
@@ -209,6 +199,9 @@
 		row += "<td>[" + outlet.customer_code + "] " + outlet.customer_name + " ( " + outlet.outlet + " )";
 		row += "<input type='hidden' name='outlets[]' value='" + outlet.outlet_id + "'>";
 		row += "</td>";
+        // add supervisor
+        row += "<td>" + supervisor + "<input type='hidden' name='outlet_"+ outlet.outlet_id +"_supervisor' value='" + supervisor +"'</td>";
+
 		<?php foreach($checklist as $check){ ?>
 		row += "<td class='text-align:center'><input type='checkbox' name='checklist_<?= $check['checklist_id']; ?>_" +
 			outlet.outlet_id + "'></td>";

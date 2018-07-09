@@ -11,6 +11,10 @@
         </button>
       </div>
       <div class="modal-body">
+            <label>Import via CSV</label>
+            <input type="file" name="add_product_modal_import" id="add_product_modal_import" class="form-control">
+            <a href="<?= site_url('files/template/add_project_add_location.csv'); ?>">Download template</a>
+            <hr>
             <input type="text" class="form-control" id="add_products_modal_search">
             <br>
             <button type="button" id="add_products_modal_button" class="btn btn-primary pull-right">Search</button>
