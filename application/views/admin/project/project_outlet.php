@@ -47,6 +47,18 @@
 							</td>
 						</tr>
 						<tr>
+							<th>Start Date</th>
+							<td>:
+								<?= $project_outlet["start_date"] ?>
+							</td>
+						</tr>
+						<tr>
+							<th>End Date</th>
+							<td>:
+								<?= $project_outlet["end_date"] ?>
+							</td>
+						</tr>
+						<tr>
 							<th>Address</th>
 						</tr>
 
