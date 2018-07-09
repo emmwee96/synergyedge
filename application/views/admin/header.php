@@ -99,7 +99,7 @@
                         </li>
                         <li class=" <?php  if ($this->router->fetch_class() == 'user'){ echo 'active' ;} ?> ">
                             <a href="<?= base_url() ?>user">
-                                <i class="fa fa-user"></i> <span>User</span>
+                                <i class="fa fa-user"></i> <span>Supervisor</span>
                             </a>
                         </li>
                         <li class=" <?php  if ($this->router->fetch_class() == 'client'){ echo 'active' ;} ?> ">

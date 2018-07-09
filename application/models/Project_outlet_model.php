@@ -25,6 +25,7 @@ class Project_outlet_model extends Base_model{
         $this->db->from("project_outlet");
         $this->db->where($cond);
         $this->db->join("outlet",'project_outlet.outlet_id = outlet.outlet_id','left');
+        $this->db->join("project", "project_outlet.project_id = project.project_id", "left");
 
         return $this->db->get()->result_array();
     }
