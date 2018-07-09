@@ -11,7 +11,18 @@
         </button>
       </div>
       <div class="modal-body">
-            <input type="text" class="form-control" id="location_modal_location_search">
+            <label>Import via CSV</label>
+            <input type="file" name="location_modal_import" id="location_modal_import" class="form-control">
+            <a href="<?= site_url('files/template/add_project_add_location.csv'); ?>">Download template</a>
+            <hr>
+            <label>Supervisor</label>
+            <select name="supervisor" class="form-control" id="location_modal_supervisor">
+                <?php foreach($supervisors as $row){ ?>
+                <option value="<?= $row['username']; ?>"><?= $row['username']; ?></option>
+                <?php } ?>
+            </select>
+            <label>Search For Location</label>
+            <input type="text" placeholder="search for a place" class="form-control" id="location_modal_location_search">
             <br>
             <button type="button" id="location_modal_location_button" class="btn btn-primary pull-right">Search</button>
             <br>
@@ -63,7 +74,7 @@
         row += "</div>";
 
         return row;
-    }
+    } 
 
     function locationModalReset(){
         $("#location_modal_location_search").val('');
@@ -71,11 +82,11 @@
     }
     function locationModalAddRow(target){
        
-      
+        var supervisor = $("#location_modal_supervisor").val();
         for(var i = 0; i < locationModalResult.length; i++){
             if (locationModalResult[i].outlet_id != target) continue;
             else{
-                createLocationRow(locationModalResult[i]);
+                createLocationRow(locationModalResult[i],supervisor);
                 $("#location_modal_row_"+target).hide('slide',{
                     direction: "left"
                 });
